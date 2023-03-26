@@ -80,6 +80,5 @@ int main(void)
 	_printf("\n\n\nHere's some examples of what you could do with this custom_printf function!\n\n\n");
 	sleep(1);
 	_printf("\nPrinting Strings, Characters, and Numbers...... %s %c%drld\n\n", "Hello", 'W', 0);
-	sleep(1);
-		return (0);
+	return (0);
 }
