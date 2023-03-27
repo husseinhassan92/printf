@@ -1,46 +1,43 @@
 #include "main.h"
-unsigned int convert_s(va_list args, buffer_t *output,
-		unsigned char flags, int wid, int prec, unsigned char len);
 /**
- * convert_s - Converts an argument to a string and
- *             stores it to a buffer contained in a struct.
- * @args: A va_list pointing to the argument to be converted.
- * @flags: Flag modifiers.
- * @wid: A width modifier.
- * @prec: A precision modifier.
- * @len: A length modifier.
- * @output: A buffer_t struct containing a character array.
- *
- * Return: The number of bytes stored to the buffer.
+ * _strlen - Returns the lenght of a string.
+ * @s: Type char pointer
+ * Return: c.
  */
-unsigned int convert_s(va_list args, buffer_t *output,
-		unsigned char flags, int wid, int prec, unsigned char len)
+int _strlen(char *s)
 {
-	char *str, *null = "(null)";
-	int size;
-	unsigned int ret = 0;
+	int c;
 
-	(void)flags;
-	(void)len;
+	for (c = 0; s[c] != 0; c++)
+		;
+	return (c);
 
-	str = va_arg(args, char *);
-	if (str == NULL)
-		return (_memcpy(output, null, 6));
+}
+/**
+ * printf_string - print a string.
+ * @val: argumen t.
+ * Return: the length of the string.
+ */
 
-	for (size = 0; *(str + size);)
-		size++;
+int printf_string(va_list val)
+{
+	char *s;
+	int i, len;
 
-	ret += print_string_width(output, flags, wid, prec, size);
-
-	prec = (prec == -1) ? size : prec;
-	while (*str != '\0' && prec > 0)
+	s = va_arg(val, char *);
+	if (s == NULL)
 	{
-		ret += _memcpy(output, str, 1);
-		prec--;
-		str++;
+		s = "(null)";
+		len = _strlen(s);
+		for (i = 0; i < len; i++)
+			_putchar(s[i]);
+		return (len);
 	}
-
-	ret += print_neg_width(output, ret, flags, wid);
-
-	return (ret);
+	else
+	{
+		len = _strlen(s);
+		for (i = 0; i < len; i++)
+			_putchar(s[i]);
+		return (len);
+	}
 }
