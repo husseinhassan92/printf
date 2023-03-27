@@ -1,15 +1,15 @@
 #include "main.h"
+#include <unistd.h>
+#include <stdio.h>
 /**
- * printf_char - prints a char.
- * @val: arguments.
- * Return: 1.
+ * print_char - writes the character c to stdout
+ * @arg: argument
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
  */
-int printf_char(va_list val)
+int print_char(va_list arg)
 {
-	char s;
-
-	s = va_arg(val, int);
-	_putchar(s);
-	return (1);
+	return (_putchar(va_arg(arg, int)));
 }
 

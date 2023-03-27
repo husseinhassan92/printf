@@ -1,43 +1,24 @@
 #include "main.h"
+#include <unistd.h>
+#include <stdio.h>
 /**
- * _strlen - Returns the lenght of a string.
- * @s: Type char pointer
- * Return: c.
- */
-int _strlen(char *s)
-{
-	int c;
-
-	for (c = 0; s[c] != 0; c++)
-		;
-	return (c);
-
-}
-/**
- * printf_string - print a string.
- * @val: argumen t.
- * Return: the length of the string.
+ * print_str - prints a string with a `s` (lower case) specifier
+ * @arg: argument
+ * Return: number of character printed
  */
 
-int printf_string(va_list val)
+int print_str(va_list arg)
 {
-	char *s;
-	int i, len;
+int i;
+char *str = va_arg(arg, char*);
 
-	s = va_arg(val, char *);
-	if (s == NULL)
-	{
-		s = "(null)";
-		len = _strlen(s);
-		for (i = 0; i < len; i++)
-			_putchar(s[i]);
-		return (len);
-	}
-	else
-	{
-		len = _strlen(s);
-		for (i = 0; i < len; i++)
-			_putchar(s[i]);
-		return (len);
-	}
+if (str == NULL)
+	str = "(null)";
+else if (*str == '\0')
+	return (-1);
+
+for (i = 0; str[i]; i++)
+	_putchar(str[i]);
+
+return (i);
 }
