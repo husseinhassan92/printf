@@ -1,24 +1,24 @@
 #include "main.h"
-#include <unistd.h>
-#include <stdio.h>
 /**
- * print_str - prints a string with a `s` (lower case) specifier
- * @arg: argument
- * Return: number of character printed
+ * print_s - takes string and return string
+ * @list: string
+ * Return: string
  */
-
-int print_str(va_list arg)
+char *print_s(va_list list)
 {
-int i;
-char *str = va_arg(arg, char*);
+	char *s;
+	char *p;
+	int len;
 
-if (str == NULL)
-	str = "(null)";
-else if (*str == '\0')
-	return (-1);
+	s = va_arg(list, char *);
+	if (s == NULL)
+		s = "(null)";
 
-for (i = 0; str[i]; i++)
-	_putchar(str[i]);
+	len = _strlen(s);
 
-return (i);
+	p = malloc(sizeof(char) * len + 1);
+	if (p == NULL)
+		return (NULL);
+
+	return (_strcpy(p, s));
 }

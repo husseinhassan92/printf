@@ -1,15 +1,24 @@
 #include "main.h"
-#include <unistd.h>
-#include <stdio.h>
 /**
- * print_char - writes the character c to stdout
- * @arg: argument
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * print_c - returns char as string
+ * @list: char
+ * Return: String verion of char
  */
-int print_char(va_list arg)
+char *print_c(va_list list)
 {
-	return (_putchar(va_arg(arg, int)));
-}
+	char *s;
+	char c;
 
+	c = va_arg(list, int);
+
+	if (c == 0)
+		c = '\0';
+
+	s = malloc(sizeof(char) * 2);
+	if (s == NULL)
+		return (NULL);
+	s[0] = c;
+	s[1] = '\0';
+
+	return (s);
+}
